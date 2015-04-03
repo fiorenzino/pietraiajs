@@ -38,8 +38,8 @@ angular.module('pietraiajsApp')
           }
         },
         data: {
-          sectionTitle: 'Notizie',
-          sectionSubtitle: 'La pietraia prende vita...',
+          sectionTitle: 'Comunicati Stampa',
+          sectionSubtitle: 'In questa sezione verranno presentati i comunicati stampa inviati alle testate giornalistiche.',
           sectionPath: ['news']
         }
       })

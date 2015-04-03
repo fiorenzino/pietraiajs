@@ -39,16 +39,16 @@ angular
         url: '/',
         views: {
           'header': {
-            templateUrl: 'templates/restart/header.html'
+            templateUrl: 'templates/header.html'
           },
           'slider': {
-            templateUrl: 'templates/restart/slider.html'
+            templateUrl: 'templates/slider.html'
           },
           'content': {
             templateUrl: 'views/home.html'
           },
           'footer': {
-            templateUrl: 'templates/restart/footer.html'
+            templateUrl: 'templates/footer.html'
           }
         }
       })
@@ -57,13 +57,13 @@ angular
         abstract: true,
         views: {
           'header': {
-            templateUrl: 'templates/restart/header.html'
+            templateUrl: 'templates/header.html'
           },
           'slider': {
             template: ''
           },
           'footer': {
-            templateUrl: 'templates/restart/footer.html'
+            templateUrl: 'templates/footer.html'
           }
         }
       })
