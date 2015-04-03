@@ -1,0 +1,10 @@
+<div ng-include="'/templates/intro.html'"></div>
+<section>
+  <br/>
+
+  <div ng-html-bind-unsafe>
+    <span ng-bind-html="element.testo | newlines"></span>
+    <hr/>
+    <i>{{element.nome}}</i>
+  </div>
+</section>

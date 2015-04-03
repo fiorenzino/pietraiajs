@@ -1,15 +1,5 @@
-<div ng-include="'/templates/intro.html'" ></div>
-<section>
-  <br/>
-
-  <div ng-html-bind-unsafe>
-    <span ng-bind-html="element.testo | newlines"></span>
-    <hr/>
-    <i>{{element.nome}}</i>
-  </div>
-  <br/>
-  <br/>
-  <ul ng-repeat="i in element.immagini">
-    <li><img src="http://www.pietraiadeipoeti/images/{{i.foto}}" alt="{{i.nome}}"/></li>
-  </ul>
-</section>
+<div ng-include="'/templates/view.html'"></div>
+<ul>
+  <li ng-repeat="i in element.immagini"><img src="http://www.pietraiadeipoeti.it/images/{{i.foto}}" alt="{{i.nome}}"/>
+  </li>
+</ul>
