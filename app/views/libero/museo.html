@@ -1,0 +1,19 @@
+<div ng-include="'/templates/restart/intro.html'"></div>
+<section>
+  <div class="row">
+    <div id="leftcol" class="col-sm-8 col-md-8">
+
+    </div>
+    <div id="sidebar" class="col-sm-4 col-md-4">
+      <aside class="widget">
+        <h4>Ricerca</h4>
+
+        <p></p>
+        <input type="text" name="name" ng-model="search.obj.oggetto" class="span10 form-control">
+        <br/>
+        <button type="button" class="btn btn-primary" ng-click="reload()">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"> Cerca</span>
+        </button>
+      </aside>
+    </div>
+</section>
