@@ -1,10 +1,10 @@
 'use strict';
 
-function ScultureController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
+function PercorsoTattileController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
   angular.extend(this, new BaseController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $location, this));
 
-  $scope.listPage = 'app.sculture';
-  $scope.newPage = 'app.sculture_new';
+  $scope.listPage = 'app.tattile';
+  $scope.newPage = 'app.tattile_new';
   $scope.entityType = 'sculture';
   $scope.sortingArray = {data: 'desc'};
 
@@ -18,58 +18,62 @@ function ScultureController($scope, $stateParams, $state, RsResource, popupServi
     if (search && search.obj && search.obj.descrizione) {
       reqParams['obj.descrizione'] = search.obj.descrizione;
     }
+    reqParams['obj.mp3'] = 'not_null';
   };
 
   // inizializzazione a default dei valori di sectionXXX
-  $scope.sectionTitle = 'Sculture';
-  $scope.sectionSubtitle = 'In questa sezione verranno descritte le opere esposte all\'interno dell\'area. Verrà fornita una descrizione delle opere, la data in cui sono state concepite/realizzate, i materiali usati.';
-  $scope.sectionPath = ['sculture'];
+  $scope.sectionTitle = 'Percorso tattile';
+  $scope.sectionSubtitle = 'In questa sezione verranno descritte le opere accessibili ai non vedenti nello stesso ordine spaziale del percorso reale.'
+  + '<br/>' + +'All\'interno dell\'area è previsto un camminamento segnalato da passamano, lungo il quale delle targhe con descrizione in Braille avvertono la presenza dell\'opera disponibile alla visione tattile.'
+  + '<br/>' + +'Per le sculture di maggiori dimensioni è prevista una riproduzione in scala.'
+  + '<br/>' + +'A richiesta è possibile utilizzare dei lettori mp3 con la descrizione dettagliata delle opere, la stessa presente e scaricabile in queste pagine web.';
+  $scope.sectionPath = ['tattile'];
 
   // dopo $scope.init() il valore di $scope.element non e' immediatamente disponibile. Si tratta di un promise non ancora risolto.
   // anche ng-init='function()...' viene invocata prima di quel momento e assegna i valori definitivi a $scope.sectionXXX prima del tempo.
   // ...e quindi...
   // funzione di callback. altre idee?
   $scope.getSuccess = function () {
-    $scope.sectionTitle = $scope.element.oggetto;
+    $scope.sectionTitle = $scope.element.titolo;
     $scope.sectionSubtitle = $filter('date')($scope.element.data, 'dd/MM/yyyy');
-    $scope.sectionPath = ['sculture', $scope.element.id];
+    $scope.sectionPath = ['tattile', $scope.element.id];
   };
 
   $scope.getFailure = function () {
     $scope.sectionTitle = 'Errori nel caricamento dei dati';
     $scope.sectionSubtitle = $filter('date')(new Date(), 'dd/MM/yyyy');
-    $scope.sectionPath = ['sculture'];
+    $scope.sectionPath = ['tattile'];
   };
 
 };
 
 angular.module('pietraiajsApp')
 
-  .controller('ScultureController', ['$scope', '$stateParams', '$state', 'RsResource', 'popupService', 'NgTableParams', '$filter', '$location',
+  .controller('PercorsoTattileController', ['$scope', '$stateParams', '$state', 'RsResource', 'popupService', 'NgTableParams', '$filter', '$location',
     function ($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
-      angular.extend(this, new ScultureController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location));
+      angular.extend(this, new PercorsoTattileController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location));
       $scope.init();
     }])
 
   .config(['$stateProvider', function ($stateProvider) {
 
     $stateProvider
-      .state('app.sculture', {
-        url: '/sculture',
+      .state('app.tattile', {
+        url: '/tattile',
         views: {
           'content@': {
-            templateUrl: 'views/sculture/list.html',
-            controller: 'ScultureController'
+            templateUrl: 'views/tattile/list.html',
+            controller: 'PercorsoTattileController'
           }
         }
       })
 
-      .state('app.sculture_view', {
-        url: '/sculture/:id',
+      .state('app.tattile_view', {
+        url: '/tattile/:id',
         views: {
           'content@': {
-            controller: 'ScultureController',
-            templateUrl: 'views/sculture/view.html'
+            controller: 'PercorsoTattileController',
+            templateUrl: 'views/tattile/view.html'
           }
         }
       })

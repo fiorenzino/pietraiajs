@@ -1,6 +1,7 @@
 <section class="hgroup">
   <h1>{{sectionTitle}}</h1>
-  <h2>{{sectionSubtitle}}</h2>
+
+  <h2><span ng-bind-html="sectionSubtitle | newlines "></span></h2>
   <ul class="breadcrumb pull-right">
     <li><a ui-sref="home">home</a></li>
     <li ng-repeat="p in  sectionPath"><a class="active">{{p}}</a></li>
