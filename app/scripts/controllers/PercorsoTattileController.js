@@ -24,9 +24,9 @@ function PercorsoTattileController($scope, $stateParams, $state, RsResource, pop
   // inizializzazione a default dei valori di sectionXXX
   $scope.sectionTitle = 'Percorso tattile';
   $scope.sectionSubtitle = 'In questa sezione verranno descritte le opere accessibili ai non vedenti nello stesso ordine spaziale del percorso reale.'
-  + '<br/>' + +'All\'interno dell\'area è previsto un camminamento segnalato da passamano, lungo il quale delle targhe con descrizione in Braille avvertono la presenza dell\'opera disponibile alla visione tattile.'
-  + '<br/>' + +'Per le sculture di maggiori dimensioni è prevista una riproduzione in scala.'
-  + '<br/>' + +'A richiesta è possibile utilizzare dei lettori mp3 con la descrizione dettagliata delle opere, la stessa presente e scaricabile in queste pagine web.';
+  + '<br/>' + 'All\'interno dell\'area è previsto un camminamento segnalato da passamano, lungo il quale delle targhe con descrizione in Braille avvertono la presenza dell\'opera disponibile alla visione tattile.'
+  + '<br/>' + 'Per le sculture di maggiori dimensioni è prevista una riproduzione in scala.'
+  + '<br/>' + 'A richiesta è possibile utilizzare dei lettori mp3 con la descrizione dettagliata delle opere, la stessa presente e scaricabile in queste pagine web.';
   $scope.sectionPath = ['tattile'];
 
   // dopo $scope.init() il valore di $scope.element non e' immediatamente disponibile. Si tratta di un promise non ancora risolto.
