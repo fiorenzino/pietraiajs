@@ -3,23 +3,27 @@
 function ScultureController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
   angular.extend(this, new BaseController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $location, this));
 
-  $scope.listPage = 'app.news';
-  $scope.newPage = 'app.news_new';
-  $scope.entityType = 'news';
+  $scope.listPage = 'app.sculture';
+  $scope.newPage = 'app.sculture_new';
+  $scope.entityType = 'scultura';
   $scope.sortingArray = {data: 'desc'};
 
   $scope.getBaseSearch = function (search, reqParams) {
     if (search && search.obj && search.obj.oggetto) {
-      console.log('oggetto: ' + search.obj.oggetto);
-      reqParams['obj.oggetto'] = search.obj.oggetto;
+      reqParams['obj.titolo'] = search.obj.titolo;
     }
-    reqParams['obj.tipo'] = 6;
+    if (search && search.obj && search.obj.materia) {
+      reqParams['obj.materia'] = search.obj.materia;
+    }
+    if (search && search.obj && search.obj.descrizione) {
+      reqParams['obj.descrizione'] = search.obj.descrizione;
+    }
   };
 
   // inizializzazione a default dei valori di sectionXXX
-  $scope.sectionTitle = 'Comunicati Stampa';
-  $scope.sectionSubtitle = 'In questa sezione verranno presentati i comunicati stampa inviati alle testate giornalistiche.';
-  $scope.sectionPath = ['news'];
+  $scope.sectionTitle = 'Sculture';
+  $scope.sectionSubtitle = 'In questa sezione verranno descritte le opere esposte all\'interno dell\'area. Verrà fornita una descrizione delle opere, la data in cui sono state concepite/realizzate, i materiali usati.';
+  $scope.sectionPath = ['sculture'];
 
   // dopo $scope.init() il valore di $scope.element non e' immediatamente disponibile. Si tratta di un promise non ancora risolto.
   // anche ng-init='function()...' viene invocata prima di quel momento e assegna i valori definitivi a $scope.sectionXXX prima del tempo.
@@ -28,13 +32,13 @@ function ScultureController($scope, $stateParams, $state, RsResource, popupServi
   $scope.getSuccess = function () {
     $scope.sectionTitle = $scope.element.oggetto;
     $scope.sectionSubtitle = $filter('date')($scope.element.data, 'dd/MM/yyyy');
-    $scope.sectionPath = ['news', $scope.element.id];
+    $scope.sectionPath = ['sculture', $scope.element.id];
   };
 
   $scope.getFailure = function () {
     $scope.sectionTitle = 'Errori nel caricamento dei dati';
     $scope.sectionSubtitle = $filter('date')(new Date(), 'dd/MM/yyyy');
-    $scope.sectionPath = ['news'];
+    $scope.sectionPath = ['sculture'];
   };
 
 };
@@ -43,29 +47,29 @@ angular.module('pietraiajsApp')
 
   .controller('ScultureController', ['$scope', '$stateParams', '$state', 'RsResource', 'popupService', 'NgTableParams', '$filter', '$location',
     function ($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
-      angular.extend(this, new NewsController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location));
+      angular.extend(this, new ScultureController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location));
       $scope.init();
     }])
 
   .config(['$stateProvider', function ($stateProvider) {
 
     $stateProvider
-      .state('app.news', {
-        url: '/news',
+      .state('app.sculture', {
+        url: '/sculture',
         views: {
           'content@': {
-            templateUrl: 'views/news/list.html',
-            controller: 'NewsController'
+            templateUrl: 'views/sculture/list.html',
+            controller: 'ScultureController'
           }
         }
       })
 
-      .state('app.news_view', {
-        url: '/news/:id',
+      .state('app.sculture_view', {
+        url: '/sculture/:id',
         views: {
           'content@': {
-            controller: 'NewsController',
-            templateUrl: 'views/news/view.html'
+            controller: 'ScultureController',
+            templateUrl: 'views/sculture/view.html'
           }
         }
       })
