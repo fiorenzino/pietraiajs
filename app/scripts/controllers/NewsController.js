@@ -6,7 +6,7 @@ angular.module('pietraiajsApp')
 
     $stateProvider
       .state('app.news', {
-        url: 'news',
+        url: '/news',
         views: {
           'content@': {
             templateUrl: 'views/news/list.html',
@@ -20,7 +20,7 @@ angular.module('pietraiajsApp')
       })
 
       .state('app.news_view', {
-        url: 'news/:id',
+        url: '/news/:id',
         views: {
           'content@': {
             templateUrl: 'views/news/view.html',
