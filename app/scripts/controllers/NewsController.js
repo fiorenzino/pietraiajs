@@ -48,14 +48,9 @@ angular.module('pietraiajsApp')
         url: '/news/:id',
         views: {
           'content@': {
-            templateUrl: 'views/news/view.html',
-            controller: 'NewsController'
+            controller: 'NewsController',
+            templateUrl: 'views/news/view.html'
           }
-        },
-        data: {
-          sectionTitle: 'Notizie',
-          sectionSubtitle: 'La pietraia prende vita...',
-          sectionPath: ['news']
         }
       })
   }])
