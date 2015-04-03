@@ -1,0 +1,33 @@
+<div>
+  <h2>News</h2>
+</div>
+<div>
+  <form name="form">
+
+    <label>oggetto</label>
+    <input type="text" name="name" ng-model="search.obj.oggetto" class="span10"><br/>
+
+    <button type="button" class="btn btn-primary" ng-click="reload()">
+      <span class="glyphicon glyphicon-ok" aria-hidden="true"> Cerca</span>
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="resetSearch()">
+      <span class="glyphicon glyphicon-ok" aria-hidden="true"> Reset</span>
+    </button>
+  </form>
+  <br/>
+  <table ng-table="tableParams" template-pagination="custom/pager" class="table">
+    <tbody ng-repeat="p in $data">
+    <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'" ng-if="editId !== p.id">
+      <td class="rowTd" data-title="'Nome'" >{{p.nome}}</td>
+      <td class="rowTd" data-title="'Oggetto'">
+        <a ui-sref="app.news_view({id: p.id})"> {{p.oggetto}}</a>
+     </td>
+      <td class="rowTd" data-title="'Data'">{{p.data*1000 | date:'dd-MM-yyyy'}}</td>
+
+    </tr>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
