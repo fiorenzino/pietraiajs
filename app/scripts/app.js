@@ -44,9 +44,6 @@ angular
           'slider': {
             templateUrl: 'templates/restart/slider.html'
           },
-          'intro': {
-            template: ''
-          },
           'content': {
             templateUrl: 'views/home.html'
           },
@@ -64,9 +61,6 @@ angular
           },
           'slider': {
             template: ''
-          },
-          'intro': {
-            templateUrl: 'templates/restart/intro.html'
           },
           'footer': {
             templateUrl: 'templates/restart/footer.html'
