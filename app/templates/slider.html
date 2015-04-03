@@ -1,7 +1,7 @@
 <section id="slider_wrapper" class="slider_wrapper full_page_photo">
   <div id="main_flexslider" class="flexslider">
     <ul class="slides" ng-controller="BannerController">
-      <li class="item" style="background-image: url({{p.img}})" ng-repeat="p in banners">
+      <li class="item" ng-style="{'background-image':'url({{p.img}})'}" ng-repeat="p in banners">
         <div class="container">
           <div class="carousel-caption">
             {{p.testo}}
