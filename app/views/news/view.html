@@ -1,18 +1,15 @@
-<section class="hgroup">
-  <h1>{{element.oggetto}}</h1>
-
-  <h2>{{element.data*1000 | date:'dd/MM/yyyy'}}</h2>
-  <ul class="breadcrumb pull-right">
-    <li><a ui-sref="home">home</a></li>
-    <li><a ui-sref="app.news">notizie</a></li>
-    <li><a class="active">{{element.id}}</a></li>
-  </ul>
-</section>
+<div ng-include="'/templates/intro.html'" ></div>
 <section>
   <br/>
+
   <div ng-html-bind-unsafe>
     <span ng-bind-html="element.testo | newlines"></span>
     <hr/>
     <i>{{element.nome}}</i>
   </div>
+  <br/>
+  <br/>
+  <ul ng-repeat="i in element.immagini">
+    <li><img src="http://www.pietraiadeipoeti/images/{{i.foto}}" alt="{{i.nome}}"/></li>
+  </ul>
 </section>

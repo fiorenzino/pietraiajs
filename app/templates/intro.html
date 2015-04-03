@@ -1,10 +1,9 @@
 <section class="hgroup">
-  <h1>{{$state.current.data.sectionTitle}}</h1>
-
-  <h2>{{$state.current.data.sectionSubtitle}}</h2>
+  <h1>{{sectionTitle}}</h1>
+  <h2>{{sectionSubtitle}}</h2>
   <ul class="breadcrumb pull-right">
     <li><a ui-sref="home">home</a></li>
-    <li ng-repeat="p in $state.current.data.sectionPath"><a class="active">{{p}}</a></li>
+    <li ng-repeat="p in  sectionPath"><a class="active">{{p}}</a></li>
   </ul>
 </section>
 <section>

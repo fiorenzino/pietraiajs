@@ -14,10 +14,15 @@ function BaseController($scope, $stateParams, $state, Service, popupService, NgT
       reqParams['context'] = context;
       reqParams['entityType'] = $scope.entityType;
       reqParams['id'] = $stateParams.id;
-      $scope.element = Service.get(reqParams);
+      $scope.element = Service.get(reqParams, $scope.getSuccess, $scope.getFailure);
     } else {
       $scope.element = {};
     }
+  }
+
+  $scope.getSuccess = function () {
+  }
+  $scope.getFailure = function () {
   }
 
   $scope.getBaseSearch = function (search, reqParams) {

@@ -14,7 +14,28 @@ function NewsController($scope, $stateParams, $state, RsResource, popupService, 
       reqParams['obj.oggetto'] = search.obj.oggetto;
     }
     reqParams['obj.tipo'] = 6;
-  }
+  };
+
+  // inizializzazione a default dei valori di sectionXXX
+  $scope.sectionTitle = 'Comunicati Stampa';
+  $scope.sectionSubtitle = 'In questa sezione verranno presentati i comunicati stampa inviati alle testate giornalistiche.';
+  $scope.sectionPath = ['news'];
+
+  // dopo $scope.init() il valore di $scope.element non e' immediatamente disponibile. Si tratta di un promise non ancora risolto.
+  // anche ng-init='function()...' viene invocata prima di quel momento e assegna i valori definitivi a $scope.sectionXXX prima del tempo.
+  // ...e quindi...
+  // funzione di callback. altre idee?
+  $scope.getSuccess = function () {
+    $scope.sectionTitle = $scope.element.oggetto;
+    $scope.sectionSubtitle = $filter('date')($scope.element.data, 'dd/MM/yyyy');
+    $scope.sectionPath = ['news', $scope.element.id];
+  };
+
+  $scope.getFailure = function () {
+    $scope.sectionTitle = 'Errori nel caricamento dei dati';
+    $scope.sectionSubtitle = $filter('date')(new Date(), 'dd/MM/yyyy');
+    $scope.sectionPath = ['news'];
+  };
 
 };
 
@@ -36,11 +57,6 @@ angular.module('pietraiajsApp')
             templateUrl: 'views/news/list.html',
             controller: 'NewsController'
           }
-        },
-        data: {
-          sectionTitle: 'Comunicati Stampa',
-          sectionSubtitle: 'In questa sezione verranno presentati i comunicati stampa inviati alle testate giornalistiche.',
-          sectionPath: ['news']
         }
       })
 
