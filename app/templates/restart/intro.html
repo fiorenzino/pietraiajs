@@ -3,8 +3,8 @@
 
   <h2>{{$state.current.data.sectionSubtitle}}</h2>
   <ul class="breadcrumb pull-right">
-    <li><a href="index.html">Home</a></li>
-    <li class="active">{{$state.current.data.sectionTitle}}</li>
+    <li><a ui-sref="home">home</a></li>
+    <li ng-repeat="p in $state.current.data.sectionPath"><a class="active">{{p}}</a></li>
   </ul>
 </section>
 <section>

@@ -1,6 +1,30 @@
 'use strict';
 
+function NewsController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
+  angular.extend(this, new BaseController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $location, this));
+
+  $scope.listPage = 'app.news';
+  $scope.newPage = 'app.news_new';
+  $scope.entityType = 'news';
+  $scope.sortingArray = {data: 'desc'};
+
+  $scope.getBaseSearch = function (search, reqParams) {
+    if (search && search.obj && search.obj.oggetto) {
+      console.log('oggetto: ' + search.obj.oggetto);
+      reqParams['obj.oggetto'] = search.obj.oggetto;
+    }
+    reqParams['obj.tipo'] = 6;
+  }
+
+};
+
 angular.module('pietraiajsApp')
+
+  .controller('NewsController', ['$scope', '$stateParams', '$state', 'RsResource', 'popupService', 'NgTableParams', '$filter', '$location',
+    function ($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
+      angular.extend(this, new NewsController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location));
+      $scope.init();
+    }])
 
   .config(['$stateProvider', function ($stateProvider) {
 
@@ -15,7 +39,8 @@ angular.module('pietraiajsApp')
         },
         data: {
           sectionTitle: 'Notizie',
-          sectionSubtitle: 'La pietraia prende vita...'
+          sectionSubtitle: 'La pietraia prende vita...',
+          sectionPath: ['news']
         }
       })
 
@@ -26,34 +51,13 @@ angular.module('pietraiajsApp')
             templateUrl: 'views/news/view.html',
             controller: 'NewsController'
           }
+        },
+        data: {
+          sectionTitle: 'Notizie',
+          sectionSubtitle: 'La pietraia prende vita...',
+          sectionPath: ['news']
         }
       })
   }])
 
-
-  .
-  controller('NewsController', ['$scope', '$stateParams', '$state', 'RsResource', 'popupService', 'NgTableParams', '$filter', '$location',
-    function ($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $filter, $location) {
-
-
-      $scope.host = 'localhost:8080';
-      $scope.listPage = 'app.news';
-      $scope.newPage = 'app.news_new';
-      $scope.entityType = 'news';
-      $scope.sortingArray = {data: 'desc'};
-
-      angular.extend(this, new BaseController($scope, $stateParams, $state, RsResource, popupService, NgTableParams, $location));
-
-
-      $scope.getBaseSearch = function (search, reqParams) {
-        if (search && search.obj && search.obj.oggetto) {
-          console.log('oggetto: ' + search.obj.oggetto);
-          reqParams['obj.oggetto'] = search.obj.oggetto;
-        }
-        reqParams['obj.tipo'] = 6;
-      }
-
-      $scope.init = function () {
-
-      }
-    }]);
+;

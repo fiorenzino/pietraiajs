@@ -1,51 +1,57 @@
 'use strict';
 
-function BaseController($scope, $stateParams, $state, Service, popupService, NgTableParams, $location) {
-  var editId = -1;
+function BaseController($scope, $stateParams, $state, Service, popupService, NgTableParams, $location, controller) {
 
+  var host = 'localhost:8080';
+  var context = 'gestionetraslochi';
+
+  var editId = -1;
 
   $scope.init = function () {
     if ($stateParams.id !== undefined) {
-      $scope.element = Service.get({host: $scope.host, id: $stateParams.id, entityType: $scope.entityType});
+      var reqParams = {};
+      reqParams['host'] = host;
+      reqParams['context'] = context;
+      reqParams['entityType'] = $scope.entityType;
+      reqParams['id'] = $stateParams.id;
+      $scope.element = Service.get(reqParams);
     } else {
       $scope.element = {};
     }
   }
 
   $scope.getBaseSearch = function (search, reqParams) {
-
   }
-
-  $scope.init();
 
   $scope.tableParams = new NgTableParams(
     angular.extend({
         page: 1,            // show first page
-        count: 10
-        //,           // count per page
-        //sorting: $scope.sortingArray //nome: 'desc' // initial sorting
-
-      }
-      ,
-      $location.search()),
-
+        count: 10           // count per page
+        //,sorting: $scope.sortingArray //nome: 'desc' // initial sorting
+      },
+      (angular.isDefined($location)) ?
+        $location.search() : {}),
     {
       getData: function ($defer, params) {
-
-        var reqParams = {'startRow': (params.page() - 1) * params.count(), 'pageSize': params.count()};
+        var reqParams = {};
+        reqParams['host'] = host;
+        reqParams['context'] = context;
+        reqParams['entityType'] = $scope.entityType;
+        reqParams['startRow'] = (params.page() - 1) * params.count();
+        reqParams['pageSize'] = params.count();
         if (angular.isDefined(params.$params['sorting'])) {
           angular.forEach(params.$params['sorting'], function (value, key) {
             reqParams['orderBy'] = key + ' ' + value;
           });
         }
         $scope.getBaseSearch($scope.search, reqParams);
-        reqParams['entityType'] = $scope.entityType;
-        reqParams['host'] = $scope.host;
         Service.query(reqParams, function (data, getResponseHeaders) {
           params.total(getResponseHeaders('listSize'));
           $defer.resolve(data);
         });
-        $location.search(params.url()); // put params in url
+        if (angular.isDefined($location)) {
+          $location.search(params.url()); // put params in url
+        }
       }
     })
   ;
@@ -61,53 +67,61 @@ function BaseController($scope, $stateParams, $state, Service, popupService, NgT
 
   $scope.addNew = function () {
     $scope.element = {};
-    $state.go(newPage);
+    $state.go($scope.newPage);
   }
 
 
   $scope.save = function () {
-    Service.create({host: $scope.host, entityType: actualEntityType}, $scope.element, function () {
+    var reqParams = {};
+    reqParams['host'] = host;
+    reqParams['context'] = context;
+    reqParams['entityType'] = $scope.entityType;
+    Service.create(reqParams, $scope.element, function () {
       $scope.element = {};
-      $state.go(listPage);
+      $state.go($scope.listPage);
     });
 
   }
 
   $scope.update = function () {
-    //$scope.element.$update(function () {
-    //  $scope.tableParams.reload();
-    //});
-    Service.update({host: $scope.host, entityType: actualEntityType}, $scope.element, function () {
-      $state.go(listPage);
+    var reqParams = {};
+    reqParams['host'] = host;
+    reqParams['context'] = context;
+    reqParams['entityType'] = $scope.entityType;
+    Service.update(reqParams, $scope.element, function () {
+      $state.go($scope.listPage);
     });
   }
 
   $scope.updateInLine = function (inLine) {
-    Service.update({host: $scope.host, entityType: actualEntityType}, inLine, function () {
+    var reqParams = {};
+    reqParams['host'] = host;
+    reqParams['context'] = context;
+    reqParams['entityType'] = $scope.entityType;
+    Service.update(reqParams, inLine, function () {
       $scope.tableParams.reload();
     });
-    //opzione.$update(function () {
-    //  $scope.tableParams.reload();
-    //});
   }
 
   $scope.delete = function () {
     if (popupService.showPopup('Vuoi eliminarlo?')) {
-      //$scope.element.$delete(function () {
-      //  $state.go(listPage);
-      //});
-      Service.delete({host: $scope.host, entityType: actualEntityType}, $scope.element, function () {
-        $state.go(listPage);
+      var reqParams = {};
+      reqParams['host'] = host;
+      reqParams['context'] = context;
+      reqParams['entityType'] = $scope.entityType;
+      Service.delete(reqParams, $scope.element, function () {
+        $state.go($scope.listPage);
       });
     }
   }
 
   $scope.deleteInLine = function (inLine) {
     if (popupService.showPopup('Vuoi eliminarlo?')) {
-      //opzione.$delete(function () {
-      //  $scope.tableParams.reload();
-      //});
-      Service.delete({host: $scope.host, entityType: actualEntityType}, inLine, function () {
+      var reqParams = {};
+      reqParams['host'] = host;
+      reqParams['context'] = context;
+      reqParams['entityType'] = $scope.entityType;
+      Service.delete(reqParams, inLine, function () {
         $scope.tableParams.reload();
       });
     }
@@ -116,7 +130,7 @@ function BaseController($scope, $stateParams, $state, Service, popupService, NgT
   $scope.undo = function () {
     $scope.element = {};
     $scope.search = {};
-    $state.go(listPage);
+    $state.go($scope.listPage);
   }
 
 

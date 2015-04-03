@@ -1,37 +1,40 @@
-<div class="main">
-  <div class="container">
-    <section class="hgroup">
-      <h1>Notizie</h1>
-      <div>
-  <h2>News</h2>
-</div>
-<div>
-  <form name="form">
+<section>
+  <div class="row">
+    <div id="leftcol" class="col-sm-8 col-md-8">
+      <table ng-table="tableParams" template-pagination="custom/pager" template-header="">
+        <tbody ng-repeat="p in $data">
+        <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+          <td class="rowTd">
+            <article class="post">
+              <div class="post_header">
+                <h3 class="post_title"><a ui-sref="app.news_view({id:p.id})">{{p.oggetto}}</a></h3>
 
-    <label>oggetto</label>
-    <input type="text" name="name" ng-model="search.obj.oggetto" class="span10"><br/>
+                <div class="post_sub"><i class="fa-time"></i> {{p.data*1000 | date:'dd/MM/yyyy'}}
+                  <!-- <a href="single_post.html#post_comments"><i
+                  class="fa-comments-alt"></i> 6 comments</a>-->
+                </div>
+              </div>
+              <div class="post_content">
+                <!--<figure><a href="single_post.html"><img alt="0" src="images/portfolio/p4.jpg"></a></figure>-->
+                <p><span ng-bind-html="p.testo | newlines | limitTo:250"></span>...</p>
+                <a ui-sref="app.news_view({id:p.id})" class="btn btn-primary">continua...</a></div>
+            </article>
 
-    <button type="button" class="btn btn-primary" ng-click="reload()">
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"> Cerca</span>
-    </button>
-    <button type="button" class="btn btn-primary" ng-click="resetSearch()">
-      <span class="glyphicon glyphicon-ok" aria-hidden="true"> Reset</span>
-    </button>
-  </form>
-  <br/>
-  <table ng-table="tableParams" template-pagination="custom/pager" class="table">
-    <tbody ng-repeat="p in $data">
-    <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'" ng-if="editId !== p.id">
-      <td class="rowTd" data-title="'Nome'" >{{p.nome}}</td>
-      <td class="rowTd" data-title="'Oggetto'">
-        <a ui-sref="app.news_view({id: p.id})"> {{p.oggetto}}</a>
-     </td>
-      <td class="rowTd" data-title="'Data'">{{p.data*1000 | date:'dd-MM-yyyy'}}</td>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="sidebar" class="col-sm-4 col-md-4">
+      <aside class="widget">
+        <h4>Ricerca</h4>
 
-    </tr>
-    </tr>
-    </tbody>
-  </table>
-
-
-</div>
+        <p></p>
+        <input type="text" name="name" ng-model="search.obj.oggetto" class="span10 form-control">
+        <br/>
+        <button type="button" class="btn btn-primary" ng-click="reload()">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"> Cerca</span>
+        </button>
+      </aside>
+    </div>
+</section>
