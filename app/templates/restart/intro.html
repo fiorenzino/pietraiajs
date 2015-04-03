@@ -1,0 +1,12 @@
+<section class="hgroup">
+  <h1>{{$state.current.data.sectionTitle}}</h1>
+
+  <h2>{{$state.current.data.sectionSubtitle}}</h2>
+  <ul class="breadcrumb pull-right">
+    <li><a href="index.html">Home</a></li>
+    <li class="active">{{$state.current.data.sectionTitle}}</li>
+  </ul>
+</section>
+<section>
+  <div ui-view="content"></div>
+</section>

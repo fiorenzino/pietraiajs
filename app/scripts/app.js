@@ -34,22 +34,44 @@ angular
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      .state('app', {
+
+      .state('home', {
         url: '/',
         views: {
           'header': {
-            templateUrl: 'templates/header.html'
+            templateUrl: 'templates/restart/header.html'
+          },
+          'slider': {
+            templateUrl: 'templates/restart/slider.html'
+          },
+          'intro': {
+            template: ''
           },
           'content': {
-            templateUrl: 'views/benvenuto.html'
+            templateUrl: 'views/home.html'
           },
           'footer': {
-            templateUrl: 'templates/footer.html'
+            templateUrl: 'templates/restart/footer.html'
           }
         }
       })
 
-
-
+      .state('app', {
+        abstract: true,
+        views: {
+          'header': {
+            templateUrl: 'templates/restart/header.html'
+          },
+          'slider': {
+            template: ''
+          },
+          'intro': {
+            templateUrl: 'templates/restart/intro.html'
+          },
+          'footer': {
+            templateUrl: 'templates/restart/footer.html'
+          }
+        }
+      })
 
   }]);

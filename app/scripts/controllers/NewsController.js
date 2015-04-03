@@ -13,10 +13,10 @@ angular.module('pietraiajsApp')
             controller: 'NewsController'
           }
         },
-        onEnter: function ($stateParams) {
-
+        data: {
+          sectionTitle: 'Notizie',
+          sectionSubtitle: 'La pietraia prende vita...'
         }
-
       })
 
       .state('app.news_view', {
