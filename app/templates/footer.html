@@ -35,11 +35,13 @@
         <div class="footer_teaser col-sm-4 col-md-4">
           <h3>Ultime notizie</h3>
 
-          <ul class="media-list" ng-controller="LatestNewsController" ng-repeat="p in news">
-            <li class="media"><a href="#" class="media-photo" style="background-image:url(images/portfolio/t5.jpg)"></a>
-              <a href="#" class="media-date">{{p.data}}<span>{{p.data}}</span></a>
+          <ul class="media-list" ng-controller="LatestNewsController">
+            <li ng-repeat="p in news" class="media"><a href="#" class="media-photo"
+                                                       style="background-image:url(images/portfolio/t5.jpg)"></a>
+              <a href="#" class="media-date"><span>{{p.data *1000 | date:'dd/MM/yyyy'}}</span></a>
               <h5 class="media-heading"><a href="#">{{p.oggetto}}...</a></h5>
-              <p>{{p.testo}}...</p>
+
+              <p><span ng-bind-html="p.testo  | newlines | limitTo:150 "></span>...</p>
             </li>
           </ul>
         </div>
