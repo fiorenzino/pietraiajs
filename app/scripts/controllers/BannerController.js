@@ -7,10 +7,9 @@ angular.module('pietraiajsApp')
     $scope.banners = {};
     var reqParams = {};
     reqParams['host'] = 'localhost:8080';
-    reqParams['entityType'] = 'banner';
+    reqParams['entityType'] = 'banners';
     reqParams['startRow'] = 0;
     reqParams['pageSize'] = 3;
-    reqParams['orderBy'] = 'random()';
 
 
     RsResource.query(reqParams, function (data) {
