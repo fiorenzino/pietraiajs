@@ -1,19 +1,58 @@
-<div ng-include="'/templates/restart/intro.html'"></div>
+<div ng-include="'/templates/intro.html'" ng-init="sectionTitle ='contatti'; sectionPath = ['contatti']"></div>
+
 <section>
   <div class="row">
-    <div id="leftcol" class="col-sm-8 col-md-8">
+    <div class="office_address col-sm-4 col-md-4">
+      <div class="team_member">
+        <img src="images/restart/restart_logo.png" width="90" height="90" alt="logo">
+        <h5>Museo</h5>
+        <small>Pietraia dei Poeti</small>
+        <br><br>
 
+        <div class="team_social">
+          <a href="http://facebook.com/pietraiadeipoeti"><i class="fa fa-facebook"></i></a>
+          <a href="mailto:info@pietraiadeipoeti.it"><i class="fa fa-envelope"></i></a>
+          <a href="http://www.pietraiadeipoeti.it"><i class="fa fa-globe"></i></a>
+        </div>
+        <address>
+          <strong></strong><br>
+          C.da Barattelle<br>
+          63074, San Benedetto del Tronto (AP)<br/>
+          <i class="fa fa-phone"></i> (+39) 338-8771658<br/>
+          <i class="fa fa-envelope"></i> info@pietraiadeipoeti.it
+        </address>
+      </div>
     </div>
-    <div id="sidebar" class="col-sm-4 col-md-4">
-      <aside class="widget">
-        <h4>Ricerca</h4>
-
-        <p></p>
-        <input type="text" name="name" ng-model="search.obj.oggetto" class="span10 form-control">
-        <br/>
-        <button type="button" class="btn btn-primary" ng-click="reload()">
-          <span class="glyphicon glyphicon-ok" aria-hidden="true"> Cerca</span>
-        </button>
-      </aside>
+    <div class="contact_form col-sm-8 col-md-8">
+      <form name="contact_form" id="contact_form" method="post">
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <label>Nome</label>
+            <input name="name" id="name" class="form-control" type="text" value="">
+          </div>
+          <div class="col-sm-6 col-md-6">
+            <label>E-mail</label>
+            <input name="email" id="email" class="form-control" type="text" value="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <label>Soggetto</label>
+            <input name="subject" id="subject" class="form-control" type="text">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <label>Messaggio</label>
+            <textarea name="message" id="message" rows="8" class="form-control"></textarea>
+          </div>
+          <div class="col-sm-12 col-md-12"><br/>
+            <a id="submit_btn" class="btn btn-primary" name="submit">Invia Messaggio</a> <span id="notice"
+                                                                                               class="alert alert-warning alert-dismissable hidden"
+                                                                                               style="margin-left:20px;"></span>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 </section>

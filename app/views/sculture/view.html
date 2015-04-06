@@ -3,8 +3,12 @@
   <br/>
 
   <div ng-html-bind-unsafe>
-    <span ng-bind-html="element.testo | newlines"></span>
+    <span ng-bind-html="element.descrizione | newlines"></span>
     <hr/>
     <i>{{element.materia}}</i>
+    <ul>
+      <li ng-repeat="i in element.immagini"><img ng-src="http://www.pietraiadeipoeti.it/images/{{i.foto}}" alt="{{i.nome}}"/>
+      </li>
+    </ul>
   </div>
 </section>

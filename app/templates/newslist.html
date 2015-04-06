@@ -8,7 +8,7 @@
           <td class="rowTd">
             <article class="post">
               <div class="post_header">
-                <h3 class="post_title"><a href="/#/{{sectionPath[0]}}/{{p.id}}" >{{p.titolo}}</a></h3>
+                <h3 class="post_title"><a href="/#/{{sectionPath[0]}}/{{p.id}}">{{p.oggetto}}</a></h3>
 
                 <div class="post_sub"><i class="fa-time"></i> {{p.data*1000 | date:'dd/MM/yyyy'}}
                   <!-- <a href="single_post.html#post_comments"><i
@@ -16,9 +16,14 @@
                 </div>
               </div>
               <div class="post_content">
-                <!--<figure><a href="single_post.html"><img alt="0" src="images/portfolio/p4.jpg"></a></figure>-->
-                <p><span ng-bind-html="p.testo | newlines | limitTo:250"></span>...</p>
-                <a href="/#/{{sectionPath[0]}}/{{p.id}}" class="btn btn-primary">continua...</a></div>
+                <figure ng-show="p.immagini.length >0">
+                  <a href="/#/{{sectionPath[0]}}/{{p.id}}">
+                    <img alt="0" ng-src="http://pietraiadeipoeti.it/images/{{p.immagini[0].foto}}" />
+                    </a>
+                </figure>
+                <p><span ng-bind-html=" p.testo | htmlToPlaintext | limitTo:250"></span>...</p>
+                    <a href="/#/{{sectionPath[0]}}/{{p.id}}" class="btn btn-primary">continua...</a>
+              </div>
             </article>
 
           </td>

@@ -35,7 +35,7 @@ function PercorsoTattileController($scope, $stateParams, $state, RsResource, pop
   // funzione di callback. altre idee?
   $scope.getSuccess = function () {
     $scope.sectionTitle = $scope.element.titolo;
-    $scope.sectionSubtitle = $filter('date')($scope.element.data, 'dd/MM/yyyy');
+    $scope.sectionSubtitle = $scope.element.data;
     $scope.sectionPath = ['tattile', $scope.element.id];
   };
 

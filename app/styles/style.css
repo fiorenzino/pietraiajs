@@ -7509,13 +7509,13 @@ blockquote p {
   height: 51px;
   border: none;
   text-indent: 100%;
-  background: url(images/ui.totop.png) no-repeat left top;
+  background: url('/images/ui.totop.png') no-repeat left top;
   opacity: 50;
   filter: alpha(opacity=5000);
   z-index: 2;
 }
 #toTopHover {
-  background: url(images/ui.totop.png) no-repeat left -51px;
+  background: url('/images/ui.totop.png') no-repeat left -51px;
   width: 51px;
   height: 51px;
   display: block;

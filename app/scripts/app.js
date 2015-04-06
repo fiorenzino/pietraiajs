@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('pietraiajsApp', ['ngResource', 'ui.router', 'ngTable', 'ui.bootstrap', 'ngSanitize'])
+  .module('pietraiajsApp', ['ngResource', 'ui.router', 'ngTable', 'ui.bootstrap', 'ngSanitize', 'angular-flexslider'])
 
   .run(function ($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
@@ -27,6 +27,12 @@ angular
       if (text)
         return text.replace(/\n/g, '<br/>');
       return '';
+    }
+  })
+
+  .filter('htmlToPlaintext', function () {
+    return function (text) {
+      return String(text).replace(/<[^>]+>/gm, '');
     }
   })
 

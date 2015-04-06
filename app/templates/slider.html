@@ -1,13 +1,11 @@
 <section id="slider_wrapper" class="slider_wrapper full_page_photo">
   <div id="main_flexslider" class="flexslider">
-    <ul class="slides" ng-controller="BannerController">
-      <li class="item" ng-style="{'background-image':'url({{p.img}})'}" ng-repeat="p in banners">
+    <flex-slider ng-controller="BannerController" class="carousel" flex-slide="p in banners track by $index">
+      <li ng-style="{'background-image':'url({{p.img}})'}">
         <div class="container">
-          <div class="carousel-caption">
-            {{p.testo}}
-          </div>
+          <div class="carousel-caption" ng-bind-html="p.testo"></div>
         </div>
       </li>
-    </ul>
+    </flex-slider>
   </div>
 </section>

@@ -11,7 +11,12 @@ angular.module('pietraiajsApp')
         views: {
           'content@': {
             templateUrl: function ($stateParams) {
-              return 'views/libero/' + $stateParams.id + '.html';
+              if ($stateParams.id) {
+                return 'views/libero/' + $stateParams.id + '.html';
+              } else {
+                return 'views/home.html';
+              }
+
             }
           }
         }

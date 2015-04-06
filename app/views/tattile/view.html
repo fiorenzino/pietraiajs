@@ -3,11 +3,15 @@
   <br/>
 
   <div ng-html-bind-unsafe>
-    <span ng-bind-html="element.testo | newlines"></span>
+    <span ng-bind-html="element.descrizione | newlines"></span>
     <hr/>
     <i>{{element.materia}}</i>
     <br/>
     <br/>
+    <ul>
+      <li ng-repeat="i in element.immagini"><img ng-src="http://www.pietraiadeipoeti.it/images/{{i.foto}}" alt="{{i.nome}}"/>
+      </li>
+    </ul>
 
     <a target="_blank" href="http://www.pietraiadeipoeti.it/mp3/{{element.mp3}}" alt="{{element.nome}}">scarica la
       descrizione in
